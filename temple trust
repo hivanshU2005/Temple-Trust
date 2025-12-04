@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shri Ram Temple Trust, Ayodhya — Official</title>
+  <meta name="description" content="Official website of the Shri Ram Temple Trust, Ayodhya — donations, aarti timings, events, seva and contact." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#b8860b; /* golden */
+      --muted:#6b6b6b;
+      --bg:#f6f5f3;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.75);
+      --maxw:1200px;
+      --radius:16px;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#111}
+    a{color:var(--accent);text-decoration:none}
+
+    /* Layout */
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffd26b);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+    .logo svg{width:40px;height:40px;transform:translateY(-2px)}
+    .brand h1{margin:0;font-family:Playfair Display,serif;font-size:18px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:10px 14px;border-radius:10px;font-weight:600}
+    nav a.cta{background:var(--accent);color:#fff}
+
+    /* Hero */
+    .hero{margin-top:18px;border-radius:var(--radius);overflow:hidden;position:relative;background:linear-gradient(120deg, rgba(184,134,11,0.06), rgba(255,215,0,0.02));}
+    .hero-inner{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;padding:48px}
+    .hero h2{font-family:Playfair Display,serif;font-size:40px;margin:0 0 12px}
+    .hero p{margin:0 0 18px;color:var(--muted);max-width:66%}
+
+    .hero .actions{display:flex;gap:12px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--card);border:1px solid rgba(0,0,0,0.06);cursor:pointer;font-weight:600}
+    .btn.primary{background:var(--accent);color:#fff;border:none}
+
+    /* Info cards */
+    .cards{display:flex;gap:16px;margin-top:22px}
+    .card{flex:1;background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+    .card h4{margin:0 0 8px;font-size:14px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Right column: donation box */
+    .donation-panel{background:linear-gradient(180deg, rgba(255,255,255,0.9), var(--glass));padding:22px;border-radius:12px;border:1px solid rgba(0,0,0,0.04)}
+    .donation-panel label{display:block;font-size:13px;margin-bottom:8px;color:var(--muted)}
+    .donation-amounts{display:flex;gap:8px;flex-wrap:wrap}
+    .donation-amounts button{padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer}
+    .donation-amounts button.active{background:rgba(184,134,11,0.12);border-color:var(--accent)}
+    .donation-panel input[type=number]{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);margin-top:10px}
+    .donate-full{display:flex;gap:10px;align-items:center;margin-top:12px}
+
+    /* Sections */
+    section{margin-top:34px}
+    .section-head{display:flex;justify-content:space-between;align-items:end}
+    .section-head h3{margin:0;font-family:Playfair Display,serif}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+
+    /* Aarti schedule */
+    .aarti .item{background:var(--card);padding:14px;border-radius:10px;border-left:4px solid rgba(184,134,11,0.12)}
+    .aarti .time{font-weight:700}
+
+    /* Events list */
+    .events .event{display:flex;gap:14px;background:var(--card);padding:14px;border-radius:10px}
+    .event .meta{min-width:110px}
+
+    /* Trustees */
+    .trustees{display:flex;gap:14px}
+    .trustee{background:linear-gradient(180deg, #fff, #fff);padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 22px rgba(16,24,40,0.06)}
+    .trustee img{width:80px;height:80px;border-radius:50%;object-fit:cover}
+    .trustee h4{margin:10px 0 6px}
+    .trustee p{margin:0;font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:40px;padding:24px;border-top:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;align-items:center}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:all .22s}
+    .modal.open{opacity:1;pointer-events:all}
+    .modal .box{background:var(--card);padding:22px;border-radius:12px;max-width:520px;width:100%;box-shadow:0 16px 40px rgba(2,6,23,0.3)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-inner{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .cards{flex-direction:column}
+      .trustees{flex-direction:column}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      .hero h2{font-size:28px}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.04);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Ram symbol -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c1.7 0 3 1.3 3 3 0 .8-.4 1.6-1 2.1v1.9c0 .6-.4 1-1 1H11c-.6 0-1-.4-1-1V7.1C9.4 6.6 9 5.8 9 5c0-1.7 1.3-3 3-3z" fill="#fff" opacity="0.95"/><path d="M6 22s2-6 6-6 6 6 6 6H6z" fill="#fff" opacity="0.95"/></svg>
+        </div>
+        <div>
+          <h1>Shri Ram Temple Trust</h1>
+          <p>Ayodhya — Preserving devotion & heritage</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#aarti">Aarti & Seva</a>
+        <a href="#donate" class="cta">Donate</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <main class="hero" role="main">
+      <div class="hero-inner">
+        <div>
+          <h2>Welcome to the Shri Ram Temple Trust — Ayodhya</h2>
+          <p>Join us in preserving sacred tradition, supporting seva programmes, and sharing the message of Shri Ram. Your contribution helps maintain the temple, run community services and preserve the cultural legacy for generations.</p>
+
+          <div class="actions">
+            <button class="btn primary" id="openDonate">Donate Now</button>
+            <a class="btn" href="#events">Upcoming Events</a>
+            <a class="btn" href="#volunteer">Volunteer / Seva</a>
+          </div>
+
+          <div class="cards" style="margin-top:20px">
+            <div class="card">
+              <h4>Daily Aarti</h4>
+              <p class="muted">Mangala — 5:20 AM | Shringar — 7:00 AM | Sandhya — 7:00 PM</p>
+            </div>
+            <div class="card">
+              <h4>Trust Activities</h4>
+              <p class="muted">Education, free meals, heritage restoration, and pilgrimage services.</p>
+            </div>
+            <div class="card">
+              <h4>Visit & Stay</h4>
+              <p class="muted">Guided darshan, accommodation assistance for pilgrims, and on-site seva booking.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="donation-panel" aria-labelledby="donation-heading">
+          <h3 id="donation-heading" style="margin:0 0 8px;font-family:Playfair Display;">Make a Donation</h3>
+          <p class="muted" style="margin:0 0 14px">Support temple upkeep, community services and preservation projects.</p>
+
+          <label>Choose an amount</label>
+          <div class="donation-amounts" id="presetAmounts">
+            <button data-amount="101">₹101</button>
+            <button data-amount="501">₹501</button>
+            <button data-amount="1101">₹1,101</button>
+            <button data-amount="5101">₹5,101</button>
+          </div>
+
+          <label for="customAmount">Or enter custom amount (INR)</label>
+          <input id="customAmount" type="number" min="1" placeholder="e.g. 2000" />
+
+          <div class="donate-full">
+            <label style="font-weight:600"><input type="checkbox" id="recurring" /> Recurring Monthly</label>
+            <div style="flex:1"></div>
+            <button class="btn primary" id="proceedDonate">Proceed</button>
+          </div>
+
+          <p class="muted" style="font-size:13px;margin-top:12px">We issue digital receipts and maintain full transparency of fund usage.</p>
+        </aside>
+      </div>
+    </main>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-head">
+        <h3>About the Trust</h3>
+        <div class="pill">Established to preserve the temple & heritage</div>
+      </div>
+      <p class="muted" style="margin-top:12px;max-width:980px">The Shri Ram Temple Trust is dedicated to running the temple complex with devotion and integrity. We manage daily rituals, cultural programming, pilgrim services, community kitchens and educational outreach. All activities are performed under the guidance of senior trustees and with complete financial transparency.</p>
+    </section>
+
+    <!-- Aarti schedule & Seva options -->
+    <section id="aarti" class="aarti">
+      <div class="section-head">
+        <h3>Aarti & Seva Timings</h3>
+        <div class="muted">Plan your visit — daily rituals & seva opportunities</div>
+      </div>
+
+      <div class="grid">
+        <div class="card item">
+          <div class="time">Mangala Aarti — 5:20 AM</div>
+          <p class="muted">Early morning aarti; special bhog on festivals.</p>
+        </div>
+        <div class="card item">
+          <div class="time">Shringar Aarti — 7:00 AM</div>
+          <p class="muted">Main morning ceremony, open for pilgrims.</p>
+        </div>
+        <div class="card item">
+          <div class="time">Sandhya Aarti — 7:00 PM</div>
+          <p class="muted">Evening aarti with arti distribution to devotees.</p>
+        </div>
+
+        <div class="card item">
+          <div class="time">Seva — Annadanam</div>
+          <p class="muted">Daily community meals serving thousands. Sponsor a meal through donations.</p>
+        </div>
+        <div class="card item">
+          <div class="time">Seva — Lamp Lighting</div>
+          <p class="muted">Dedicate lamps for family blessings and remembrance.</p>
+        </div>
+        <div class="card item">
+          <div class="time">Seva — Restoration Projects</div>
+          <p class="muted">Contribute to restoration and conservation of temple art and facilities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="events">
+      <div class="section-head">
+        <h3>Upcoming Events</h3>
+        <div class="muted">Festivals, lectures and cultural programmes</div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="event">
+          <div class="meta">
+            <strong>Dec 25</strong>
+            <div class="muted">Ram Katha</div>
+          </div>
+          <div>
+            <h4 style="margin:0">Special Ram Katha & Bhajan Sandhya</h4>
+            <p class="muted">A two-day discourse with visiting scholars and musicians. Open for registration.</p>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="meta">
+            <strong>Jan 14</strong>
+            <div class="muted">Makar Sankranti</div>
+          </div>
+          <div>
+            <h4 style="margin:0">Makar Sankranti Celebrations</h4>
+            <p class="muted">Special rituals, community feasts and kite festival for devotees.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trustees -->
+    <section id="trustees">
+      <div class="section-head">
+        <h3>Trustees & Management</h3>
+        <div class="muted">Guided by senior custodians of culture</div>
+      </div>
+      <div class="trustees" style="margin-top:18px">
+        <div class="trustee">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Champat_rai_vhp.jpg" />
+          <h4>Shri Champat Rai</h4>
+          <p class="muted">Chief Trustee</p>
+        </div>
+        <div class="trustee">
+          <img src="https://srjbtkshetra.org/wp-content/uploads/2021/03/vasudevananad-ji-1.png" />
+          <h4>Swami Vasudevanand Ji Maharaj</h4>
+          <p class="muted">Co-Founder</p>
+        </div>
+        <div class="trustee">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZXcaGiRvazzIy3q1PgIOitwDcjy9f1fRZwA&s" />
+          <h4>K. Parasaran</h4>
+          <p class="muted">Heritage & Conservation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer / Contact -->
+    <section id="volunteer">
+      <div class="section-head">
+        <h3>Volunteer & Contact</h3>
+        <div class="muted">Join seva or reach out to our office</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px;align-items:start">
+        <div class="card">
+          <h4>Volunteer Roles</h4>
+          <ul class="muted">
+            <li>Darshan Assistance</li>
+            <li>Annadanam & Kitchen Seva</li>
+            <li>Visitor Services</li>
+            <li>Conservation Volunteers</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Contact & Office</h4>
+          <p class="muted">Temple Trust Office, Ayodhya<br/>Phone: +91 12345 67890<br/>Email: info@shriramtrust.example</p>
+        </div>
+
+        <div class="card">
+          <h4>Quick Contact</h4>
+          <form id="contactForm">
+            <label class="muted">Name</label>
+            <input required name="name" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px" />
+            <label class="muted">Email</label>
+            <input required name="email" placeholder="you@example.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px" />
+            <label class="muted">Message</label>
+            <textarea required name="message" rows="4" placeholder="How can we help?" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></textarea>
+            <div style="text-align:right;margin-top:8px">
+              <button class="btn primary" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="muted">© Shri Ram Temple Trust — Ayodhya</div>
+      <div class="muted">Designed as a premium public site • Transparency & Seva</div>
+    </footer>
+
+  </div>
+
+  <!-- Modal: Donation -->
+  <div class="modal" id="donationModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box">
+      <h3 style="margin-top:0">Complete your Donation</h3>
+      <p class="muted">Enter donor details for receipt and donation purpose.</p>
+
+      <form id="donateForm">
+        <label class="muted">Full name</label>
+        <input name="donorName" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px" />
+        <label class="muted">Email</label>
+        <input name="donorEmail" type="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px" />
+        <label class="muted">Amount (INR)</label>
+        <input id="finalAmount" name="amount" type="number" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px" />
+
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+          <button type="button" class="btn" id="cancelModal">Cancel</button>
+          <button type="submit" class="btn primary">Donate & Get Receipt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- Donation UI ---
+    const preset = document.getElementById('presetAmounts');
+    const custom = document.getElementById('customAmount');
+    const openDonate = document.getElementById('openDonate');
+    const donationModal = document.getElementById('donationModal');
+    const cancelModal = document.getElementById('cancelModal');
+    const finalAmount = document.getElementById('finalAmount');
+    const proceed = document.getElementById('proceedDonate');
+
+    preset.addEventListener('click', (e)=>{
+      if(e.target.tagName !== 'BUTTON') return;
+      Array.from(preset.children).forEach(b=>b.classList.remove('active'));
+      e.target.classList.add('active');
+      custom.value = '';
+      finalAmount.value = e.target.dataset.amount;
+    });
+
+    custom.addEventListener('input', ()=>{
+      Array.from(preset.children).forEach(b=>b.classList.remove('active'));
+      finalAmount.value = custom.value || '';
+    });
+
+    openDonate.addEventListener('click', ()=>{
+      donationModal.classList.add('open');
+      donationModal.setAttribute('aria-hidden','false');
+      if(!finalAmount.value) finalAmount.value = custom.value || (preset.querySelector('button.active')?.dataset.amount || '101');
+    });
+
+    cancelModal.addEventListener('click', ()=>{
+      donationModal.classList.remove('open');
+      donationModal.setAttribute('aria-hidden','true');
+    });
+
+    // Simulate donation submission (replace with real payment integration)
+    document.getElementById('donateForm').addEventListener('submit', (ev)=>{
+      ev.preventDefault();
+      const data = new FormData(ev.target);
+      const name = data.get('donorName');
+      const email = data.get('donorEmail');
+      const amount = data.get('amount');
+
+      // Basic client-side validation
+      if(!name || !email || !amount || Number(amount) <= 0){
+        alert('Please complete donor details and enter a valid amount.');
+        return;
+      }
+
+      // Here: send data to backend / payment gateway
+      // For demo, show a thank you modal + console receipt
+      donationModal.classList.remove('open');
+      donationModal.setAttribute('aria-hidden','true');
+      alert(`Thank you, ${name}! Your donation of ₹${amount} has been received. A receipt will be sent to ${email}.`);
+      console.log('DONATION RECEIPT (demo):', {name,email,amount,method: document.getElementById('recurring').checked ? 'monthly' : 'one-time',timestamp: new Date().toISOString()});
+      ev.target.reset();
+    });
+
+    // Quick contact
+    document.getElementById('contactForm').addEventListener('submit', (ev)=>{
+      ev.preventDefault();
+      const fm = new FormData(ev.target);
+      alert('Thanks! Your message has been received. We will contact you shortly.');
+      console.log('CONTACT:', Object.fromEntries(fm.entries()));
+      ev.target.reset();
+    });
+
+    // Close modal on outside click
+    donationModal.addEventListener('click',(e)=>{
+      if(e.target === donationModal){
+        donationModal.classList.remove('open');
+        donationModal.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Small accessibility: ESC key closes modal
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        donationModal.classList.remove('open');
+        donationModal.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Prefill final amount if user clicks proceed in right panel
+    proceed.addEventListener('click', ()=>{
+      const val = finalAmount.value || custom.value || (preset.querySelector('button.active')?.dataset.amount) || 101;
+      finalAmount.value = val;
+      donationModal.classList.add('open');
+      donationModal.setAttribute('aria-hidden','false');
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
